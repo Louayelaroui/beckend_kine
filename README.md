@@ -1,2 +1,0 @@
-"# noteApp2" 
-"# KineNote" 

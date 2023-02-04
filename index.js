@@ -5,7 +5,7 @@ const PlayerRoute = require("./routes/Player");
 const QuizRoute = require("./routes/Quiz");
 const injuriesRoute = require("./routes/Injuries");
 mongoose.set('strictQuery', false);
-const url ='mongodb://127.0.0.1:27017/back-end';
+const url = process.env.DB_URL || 'mongodb://127.0.0.1:27017/back-end';
 mongoose
   .connect(url)
   .then(() => {

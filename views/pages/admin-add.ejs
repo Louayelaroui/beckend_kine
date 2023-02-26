@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body>
+
+  <nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand mb-0 h1" href="/auth/admin-panel">Admin Panel</a>
+		<div class="d-flex mx-5">
+    <a class="nav-item btn btn-outline-success" href="/auth/admin-add">add</a>
+    <a class="nav-item mx-2 btn btn-secondary" href="/auth/admin-logout">logout</a>
+		</div>
+  </div>
+</nav>
+ 
+
+<div class="container mt-5">
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <h3> Add Profile </h3>
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          here you can <strong>save</strong> new users to the database.
+        </div>
+        <h3>Personal info</h3>
+        
+        <form action="/auth/add-user" method="post" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Username:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="username" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" name="password" value="">
+            </div>
+          </div>
+          <div class="form-input mb-3 mt-3 w-25">
+          <label class="input-group-text">role</label>
+            <select class="form-select" id="role" name="role">
+              <option value="kine" selected>Kine</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+ 
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary" value="Save">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
+</body>
+

@@ -1,3 +1,41 @@
+# API Documentation:
+
+## Injuries
+
+### Add a Comment to an Injury
+
+Add a comment to a specific injury.
+
+- **URL**
+
+  `/api/injuries/add-comment/:id`
+
+- **Method:**
+
+  `POST`
+
+- **URL Params**
+
+  `id`: The ID of the injury that the comment should be added to.
+
+- **Data Params**
+
+  The request body should contain the following parameters:
+
+  `comment`: A string that represents the comment that should be added.
+
+- **Success Response:**
+
+  - **Code:** 200 **Content:** `"comment added successfully"`
+
+- **Error Response:**
+
+  - **Code:** 500 **Content:** `"couldn't add the comment"`
+
+- **Notes:**
+
+  Before adding a comment to an injury, you need to make sure that the injury exists. You can do this by calling the `GET /api/injuries/:id` endpoint with the ID of the injury.
+
 ## Authentication Routes
 
 ### Sign Up Admin

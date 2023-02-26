@@ -5,6 +5,25 @@ router.get("/test", (req, res) => {
   res.send("injuries test is successfull");
 });
 
+router.post("/add-comment/:id", async (req, res) => {
+  try {
+    // get the specific injury that we want to add
+    // the comment to ..
+    let injury = await Injury.findById(req.params["id"]);
+
+    // get the comment from the request body
+    const { comment } = req.body;
+
+    // add the comment to the array of comments of the Injury
+    injury.comment.push(comment);
+
+    res.status(200).send("comment added successfully");
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("couldn't add the comment");
+  }
+});
+
 router.post("/add", async (req, res) => {
   const { comment, datedebut, description, degree, name, player, urlimage } =
     req.body;

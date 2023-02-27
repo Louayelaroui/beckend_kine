@@ -9,10 +9,10 @@
   <body>
   <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand mb-0 h1" href="/auth/admin-panel">Admin Panel</a>
+    <a class="navbar-brand mb-0 h1" href="/admin/">Admin Panel</a>
 		<div class="d-flex mx-5">
-    <a class="nav-item btn btn-outline-success" href="/auth/add-admin">add</a>
-    <a class="nav-item mx-2 btn btn-secondary" href="/auth/admin-logout">logout</a>
+    <a class="nav-item btn btn-outline-success" href="/admin/add">add</a>
+    <a class="nav-item mx-2 btn btn-secondary" href="/admin/logout">logout</a>
 		</div>
   </div>
 </nav>
@@ -35,8 +35,8 @@
       <td><%= user.username %></td>
       <td><%= user.password %></td>
       <td class="d-flex justify-content-evenly">
-        <a href="/auth/edit-user/<%= user._id %>" class="btn btn-primary">edit</a>
-        <form action="/auth/delete-user/<%= user._id %>" method="get">
+        <a href="/admin/edit-user/<%= user._id %>" class="btn btn-primary">edit</a>
+        <form action="/admin/delete-user/<%= user._id %>" method="get">
         <button type="submit" class="btn btn-danger px-2">delete</button>
         </button>
         </form>

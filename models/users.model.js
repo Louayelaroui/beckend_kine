@@ -1,5 +1,5 @@
 const { Schema, default: mongoose, model } = require("mongoose");
-const Player = require("./Players");
+const Player = require("./players.model");
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },

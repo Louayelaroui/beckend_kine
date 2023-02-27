@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PlayerSchema = new mongoose.Schema(
+const playerSchema = new mongoose.Schema(
   {
     firstname: { type: String, required: true, trim: true },
     lastname: { type: String, required: true, trim: true },
@@ -12,8 +12,9 @@ const PlayerSchema = new mongoose.Schema(
     weight: { type: String, required: true },
     number: { type: String, required: true },
     Urlimage: { type: String, required: true },
+    injuries: [{ type: mongoose.Types.ObjectId, ref: "Injury" }],
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Player", PlayerSchema);
+module.exports = mongoose.model("Player", playerSchema);

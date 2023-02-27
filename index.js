@@ -1,19 +1,26 @@
 const express = require("express");
 const app = express();
+
 const mongoose = require("mongoose");
-const PlayerRoute = require("./routes/Player");
-const QuizRoute = require("./routes/Quiz");
+
+const PlayerRoute = require("./routes/player.routes");
+const QuizRoute = require("./routes/quiz.routes");
+const AdminRoute = require("./routes/admin.routes");
+const injuriesRoute = require("./routes/injuries.routes");
 const AuthRoute = require("./routes/auth.routes");
-const injuriesRoute = require("./routes/Injuries");
+
 const { config } = require("./config/config");
+
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
+
+const errorHandlers = require("./middleware/errorHandlers");
 
 // set up the view engine to be ejs
 app.set("view engine", "ejs");
 
 // DataBase connection
 mongoose.set("strictQuery", false);
-/* const url ='mongodb+srv://doadmin:1v4357Cnea8m29WS@kineapp-d597f5f8.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=kineapp'; */
 const url = config.MONGO_URI;
 mongoose
   .connect(url)
@@ -24,17 +31,24 @@ mongoose
     console.log("DB Connection failed: " + err);
   });
 
+// setup port
 const PORT = config.PORT || 5000;
+
+// setup logger
+app.use(morgan("dev"));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use("/auth", AuthRoute);
+app.use("/admin", AdminRoute);
 app.use("/api/player", PlayerRoute);
 app.use("/api/quiz", QuizRoute);
-app.use("/api/injuries", injuriesRoute);
+app.use("/api/injury", injuriesRoute);
+app.use("/api/auth", AuthRoute);
+
+app.use(errorHandlers);
 
 app.listen(PORT, () => {
   console.log(`Backend server is running at port ${PORT}`);

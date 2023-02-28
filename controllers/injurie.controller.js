@@ -65,9 +65,9 @@ async function getPlayerInjuries(req, res, next) {
   try {
     const playerId = req.params["playerId"];
 
-    const data = await Injury.findById(playerId).populate("injuries");
+    const data = await Player.findById(playerId).populate(injuries);
 
-    res.status(200).json(data);
+    res.status(200).json(data.injuries);
   } catch (err) {
     next(err);
   }

@@ -7,7 +7,7 @@ const injurySchema = new mongoose.Schema(
     degree :{type : String,  required: true},
     description :{type : String,  required: true},
     datedebut :{type : String,  required: true}, 
-    comment :{type : String},
+    comment :[{type : String}],
     urlimage:{type:String}
   },
   { timestamps: true }

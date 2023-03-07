@@ -5,7 +5,7 @@ const PlayerRoute = require("./routes/Player");
 const QuizRoute = require("./routes/Quiz");
 const injuriesRoute = require("./routes/Injuries");
 mongoose.set('strictQuery', false);
-const url ='mongodb+srv://doadmin:1v4357Cnea8m29WS@kineapp-d597f5f8.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=kineapp';
+const url ='';
 mongoose
   .connect(url)
   .then(() => {

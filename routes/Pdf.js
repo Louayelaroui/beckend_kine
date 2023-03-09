@@ -10,13 +10,13 @@ const Storage = multer.diskStorage({
     cd(null,file.originalname);
   },
 });
-const upload =multer({
+/*const upload =multer({
   storage:Storage
-}).single('testimage')
+}).single('testimage')*/
 
+const upload = multer({ storage: Storage }).single("file");
 
-
-router.post("/add", upload.single("pdf"), async (req, res) => {
+router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
   const { playerId } = req.body;
   const player = await Player.findById(playerId);
 

@@ -4,7 +4,7 @@ const Quiz = require("../models/Quiz");
 router.get("/test",(req,res)=>{
     res.send("quiz test is successfull");
 });
-router.post("/add",async(req,res)=>{
+/*router.post("/add",async(req,res)=>{
     const {Quality,Stress, Fatigue ,player} = req.body;
     const verfQuiz = new Quiz ({
       Quality:Quality ,
@@ -18,7 +18,36 @@ router.post("/add",async(req,res)=>{
     } catch (error) {
       res.status(500).json(error.message)
     }
+  });*/
+// Add a new quiz
+router.post("/add", async (req, res) => {
+  const { Quality, Stress, Fatigue, player } = req.body;
+  const newQuiz = new Quiz({
+    Quality: Quality,
+    Stress: Stress,
+    Fatigue: Fatigue,
+    player: player,
   });
+
+  try {
+    // Save the new quiz to the database
+    await newQuiz.save();
+
+    // Get all the quizzes, sorted by timestamp (oldest first)
+    const quizzes = await Quiz.find().sort({ createdAt: 1 });
+
+    // If we have more than 10 quizzes, delete the oldest one
+    if (quizzes.length > 10) {
+      const oldestQuiz = quizzes[0];
+      await oldestQuiz.remove();
+    }
+
+    res.status(200).json({ message: "Quiz added successfully" });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
 router.post("/getten",async(req,res)=>{
    
     

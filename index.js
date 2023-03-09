@@ -6,7 +6,7 @@ const QuizRoute = require("./routes/Quiz");
 const injuriesRoute = require("./routes/Injuries");
 const pdfRoutes =require('./routes/Pdf')
 mongoose.set('strictQuery', false);
-const url ='mongodb://127.0.0.1:27017/back-end';
+const url ='mongodb+srv://doadmin:1v4357Cnea8m29WS@kineapp-d597f5f8.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=kineapp;
 mongoose
   .connect(url)
   .then(() => {

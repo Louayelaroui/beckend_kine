@@ -70,7 +70,7 @@ router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
     //   res.status(500).json(error.message)
     // }
   });*/
-router.get("/getall",async(req,res)=>{
+/*router.get("/getall",async(req,res)=>{
     try {
       const all =await pdf.find({});
       res.status(200).json(
@@ -81,7 +81,18 @@ router.get("/getall",async(req,res)=>{
     }
     
   
+  });*/
+ router.get("/getall", async (req, res) => {
+    const { playerId } = req.query;
+  
+    try {
+      const pdfs = await Pdf.find({ player: playerId }).populate("player");
+      res.status(200).json(pdfs);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   });
+
   router.post("/delete",async(req,res)=>{
     const {deletedid}=req.body;
    

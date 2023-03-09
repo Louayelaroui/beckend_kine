@@ -14,7 +14,34 @@ const upload =multer({
   storage:Storage
 }).single('testimage')
 
-router.post("/add",async(req,res)=>{
+
+
+router.post("/add", upload.single("pdf"), async (req, res) => {
+  const { playerId } = req.body;
+  const player = await Player.findById(playerId);
+
+  if (!player) {
+    return res.status(400).json({ message: "Player not found" });
+  }
+
+  const newPdf = new Pdf({
+    player: playerId,
+    pdfUrl: {
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+    },
+  });
+
+  try {
+    await newPdf.save();
+    res.status(200).json({ message: "Pdf uploaded successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+/*router.post("/add",async(req,res)=>{
     // const {pdfurl} = req.body;
     // const verfpdf = new pdf ({
     //     pdfurl:pdfurl
@@ -42,7 +69,7 @@ router.post("/add",async(req,res)=>{
     // } catch (error) {
     //   res.status(500).json(error.message)
     // }
-  });
+  });*/
 router.get("/getall",async(req,res)=>{
     try {
       const all =await pdf.find({});

@@ -17,7 +17,7 @@ const Storage = multer.diskStorage({
 const upload = multer({ storage: Storage }).single("file");
 
 router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
-  const { playerId } = req.body;
+  const { playerId,name } = req.body;
   const player = await Player.findById(playerId);
 
   if (!player) {
@@ -25,6 +25,7 @@ router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
   }
 
   const newPdf = new Pdf({
+    name,
     player: playerId,
     pdfUrl: {
       data: req.file.buffer,
@@ -83,10 +84,10 @@ router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
   
   });*/
  router.get("/getall", async (req, res) => {
-    const { playerId } = req.query;
+    const { playerId, name  } = req.query;
   
     try {
-      const pdfs = await Pdf.find({ player: playerId }).populate("player");
+      const pdfs = await Pdf.find({ player: playerId, name: name }).populate("player");
       res.status(200).json(pdfs);
     } catch (error) {
       res.status(500).json({ error: error.message });

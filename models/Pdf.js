@@ -4,7 +4,7 @@ const pdfSchema = new mongoose.Schema({
   name: { type: String, required: true },
   postedBy: { type: mongoose.Schema.Types.ObjectId, 
     ref: "Player" },
-  pdfUrl: { Type: String, required: true },
+  pdfUrl: { Type: String },
   createdAt: { type: Date, default: Date.now },
 }, { timestamps: true });
 

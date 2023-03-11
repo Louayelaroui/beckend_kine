@@ -4,19 +4,9 @@ const multer =require('multer');
 router.get("/test",(req,res)=>{
     res.send("pdfs test is successfull");
 });
-const Storage = multer.diskStorage({
-  destination :'upload',
-  filename:(req,file,cd)=>{
-    cd(null,file.originalname);
-  },
-});
-/*const upload =multer({
-  storage:Storage
-}).single('testimage')*/
 
-const upload = multer({ storage: Storage }).single("file");
 
-router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
+router.post("/add", async (req, res) => {
   const { playerId, name, pdfUrl } = req.body;
   const player = await Player.findById(playerId);
 
@@ -29,6 +19,7 @@ router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
     player: playerId,
     pdfUrl: pdfUrl,
   });
+    res.status(200).json({ message: "Pdf uploaded successfully" });
 
   try {
     await newPdf.save();

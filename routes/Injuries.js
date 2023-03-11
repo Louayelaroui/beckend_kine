@@ -33,6 +33,17 @@ router.post("/add",async(req,res)=>{
     
   
   });
+   router.post("/addComment", async (req, res)=> {
+     const {injuryId, comment} = req.body;
+       let injury = await Injury.findOne({_id: injuryId});
+       injury.comments = [
+            ...injury.comments,
+           comment
+         ];
+       await injury.save();
+       
+   
+   });
   router.post("/getbypalyerid",async(req,res)=>{
     const {playerid}=req.body;
     

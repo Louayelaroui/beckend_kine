@@ -8,22 +8,23 @@ router.get("/test",(req,res)=>{
 
 router.post("/add", async (req, res) => {
   const { playerId, name, pdfUrl } = req.body;
-    
-//   const player = await Player.findById(playerId);
+  const player = await Player.findById(playerId);
 
-//   if (!player) {
-//     return res.status(400).json({ message: "Player not found" });
-//   }
+  if (!player) {
+    return res.status(400).json({ message: "Player not found" });
+  }
+
 
   const newPdf = new Pdf({
     name: name,
-    postedBy: playerId,
+    player: playerId,
     pdfUrl: pdfUrl,
   });
+    res.status(200).json({ message: "Pdf uploaded successfully" });
 
   try {
-    const savedPdf = await newPdf.save();
-    res.status(200).json(savedPdf);
+    await newPdf.save();
+    res.status(200).json({ message: "Pdf uploaded successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

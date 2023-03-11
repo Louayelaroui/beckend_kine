@@ -8,7 +8,7 @@ router.get("/test",(req,res)=>{
 
 
 router.post("/add", async (req, res) => {
-  const { playerId, name, pdfUrl } = req.body;
+  const { playerId, name, pdfUrl} = req.body;
   const player = await Player.findById(playerId);
 
   if (!player) {

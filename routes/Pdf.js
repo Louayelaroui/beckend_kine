@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Pdf = require("../models/Pdf");
-const Player = require("../models/Player");
+const Player = require("../models/Players");
 const multer =require('multer');
 router.get("/test",(req,res)=>{
     res.send("pdfs test is successfull");

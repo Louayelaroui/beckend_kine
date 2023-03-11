@@ -84,10 +84,10 @@ router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
   
   });*/
  router.get("/getall", async (req, res) => {
-    const { playerId, name  } = req.query;
+    const { playerId } = req.query;
   
     try {
-      const pdfs = await Pdf.find({ player: playerId, name: name }).populate("player");
+      const pdfs = await Pdf.find({ player: playerId }).populate("player");
       res.status(200).json(pdfs);
     } catch (error) {
       res.status(500).json({ error: error.message });

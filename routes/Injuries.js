@@ -36,12 +36,19 @@ router.post("/add",async(req,res)=>{
    router.post("/addComment", async (req, res)=> {
      const {injuryId, comment} = req.body;
        let injury = await Injury.findOne({_id: injuryId});
-       injury.comments = [
+       try{
+       injury.updateOne({
+       comments: [
             ...injury.comments,
            comment
-         ];
-       await injury.save();
-       res.status(200);
+         ]
+       });
+                  res.status(200).json("comment has been updated");
+
+       }catch(error){
+           res.status(500).json(error);
+       }
+
        
    
    });

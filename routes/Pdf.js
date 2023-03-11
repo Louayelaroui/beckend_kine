@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const pdf = require("../models/Pdf");
+const Pdf = require("../models/Pdf");
 const multer =require('multer');
 router.get("/test",(req,res)=>{
     res.send("pdfs test is successfull");

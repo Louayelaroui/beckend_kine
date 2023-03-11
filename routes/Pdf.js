@@ -8,7 +8,7 @@ router.get("/test",(req,res)=>{
 
 
 router.post("/add", async (req, res) => {
-  const { playerId, name, pdfUrl} = req.body;
+  const { playerId, pdf} = req.body;
   const player = await Player.findById(playerId);
 
   if (!player) {
@@ -20,8 +20,8 @@ router.post("/add", async (req, res) => {
     
     player: playerId,
     pdf: {
-        name: name,
-        pdfUrl: pdfUrl,
+        name: pdf.name,
+        pdfUrl: pdf.pdfUrl,
     }
   });
 

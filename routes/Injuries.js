@@ -5,9 +5,9 @@ router.get("/test",(req,res)=>{
     res.send("injuries test is successfull");
 });
 router.post("/add",async(req,res)=>{
-    const {comment,datedebut,description,degree,name,player,urlimage} = req.body;
+    const {comments,datedebut,description,degree,name,player,urlimage} = req.body;
     const verfInjury = new Injury ({
-        comment:comment ,
+        comments:comments ,
         datedebut: datedebut,
         description:description,
         degree:degree,

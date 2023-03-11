@@ -21,7 +21,6 @@ router.post("/add", async (req, res) => {
     player: playerId,
     pdfUrl: pdfUrl,
   });
-    res.status(200).json({ message: "Pdf uploaded successfully" });
 
   try {
     await newPdf.save();

@@ -26,8 +26,8 @@ router.post("/add", async (req, res) => {
   });
 
   try {
-    await newPdf.save();
-    res.status(200).json({ message: "Pdf uploaded successfully" });
+    const pdf = await newPdf.save();
+    res.status(200).json(pdf);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -11,7 +11,7 @@ const pdfSchema = new mongoose.Schema(
       ref: "Player",
       required: true,
     },
-    pdfUrl: [{ data: Buffer, contentType: String }],
+    pdfUrl: { Type: String },
   },
   { timestamps: true }
 );

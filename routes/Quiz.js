@@ -34,13 +34,9 @@ router.post("/add", async (req, res) => {
     await newQuiz.save();
 
     // Get all the quizzes, sorted by timestamp (oldest first)
-    const quizzes = await Quiz.find().sort({ createdAt: 1 });
+//     const quizzes = await Quiz.find().sort({ createdAt: 1 });
 
     // If we have more than 10 quizzes, delete the oldest one
-    if (quizzes.length > 10) {
-      const oldestQuiz = quizzes[0];
-      await oldestQuiz.remove();
-    }
 
     res.status(200).json({ message: "Quiz added successfully" });
   } catch (error) {
@@ -53,7 +49,7 @@ router.post("/getten",async(req,res)=>{
     
   try {
     
-         ten = await Quiz.find({}).limit(10);
+         ten = await Quiz.find({});
          
          res.status(200).json(
            ten
@@ -67,7 +63,7 @@ router.post("/getplayerten",async(req,res)=>{
     
   try {
     
-         ten = await Quiz.find({player:playerid}).limit(10);
+         ten = await Quiz.find({player:playerid});
          
          res.status(200).json(
           

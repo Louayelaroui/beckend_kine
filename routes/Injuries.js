@@ -41,6 +41,7 @@ router.post("/add",async(req,res)=>{
            comment
          ];
        await injury.save();
+       res.status(200);
        
    
    });

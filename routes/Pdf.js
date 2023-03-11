@@ -17,9 +17,12 @@ router.post("/add", async (req, res) => {
 
 
   const newPdf = new Pdf({
-    name: name,
+    
     player: playerId,
-    pdfUrl: pdfUrl,
+    pdf: {
+        name: name,
+        pdfUrl: pdfUrl,
+    }
   });
 
   try {

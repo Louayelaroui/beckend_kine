@@ -37,7 +37,7 @@ router.post("/add",async(req,res)=>{
      const {injuryId, comment} = req.body;
        let injury = await Injury.findOne({_id: injuryId});
        try{
-       injury.updateOne({
+       await injury.updateOne({
        comments: [
             ...injury.comments,
            comment

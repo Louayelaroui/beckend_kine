@@ -8,6 +8,7 @@ router.get("/test",(req,res)=>{
 
 router.post("/add", async (req, res) => {
   const { playerId, name, pdfUrl } = req.body;
+    
 //   const player = await Player.findById(playerId);
 
 //   if (!player) {
@@ -16,13 +17,13 @@ router.post("/add", async (req, res) => {
 
   const newPdf = new Pdf({
     name: name,
-    player: playerId,
+    postedBy: playerId,
     pdfUrl: pdfUrl,
   });
 
   try {
-    await newPdf.save();
-    res.status(200).json({ message: "Pdf uploaded successfully" });
+    const savedPdf = await newPdf.save();
+    res.status(200).json(savedPdf);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

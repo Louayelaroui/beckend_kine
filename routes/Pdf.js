@@ -17,7 +17,7 @@ const Storage = multer.diskStorage({
 const upload = multer({ storage: Storage }).single("file");
 
 router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
-  const { playerId,name } = req.body;
+  const { playerId, name, pdfUrl } = req.body;
   const player = await Player.findById(playerId);
 
   if (!player) {
@@ -25,12 +25,9 @@ router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
   }
 
   const newPdf = new Pdf({
-    name,
+    name: name,
     player: playerId,
-    pdfUrl: {
-      data: req.file.buffer,
-      contentType: req.file.mimetype,
-    },
+    pdfUrl: pdfUrl,
   });
 
   try {
@@ -41,48 +38,6 @@ router.post("/add", /*upload.single("pdf"),*/ async (req, res) => {
   }
 });
 
-
-/*router.post("/add",async(req,res)=>{
-    // const {pdfurl} = req.body;
-    // const verfpdf = new pdf ({
-    //     pdfurl:pdfurl
-    //   });
-    upload(req,res,(err)=>{
-      if(err){
-        console.log(err)
-      }else{
-        const verfpdf = new pdf({
-          pdfurl:{
-            data:req.file.filename,
-            contentType:'application/pdf'
-          }
-        })
-        verfpdf.save().then(()=>res.send('successfully uploaded')).catch((err)=>console.log(err))
-        
-      }
-    })
-
-
-
-    // try {
-    //   const savedpdf = await verfpdf.save();
-    //   res.status(200).json(savedpdf);
-    // } catch (error) {
-    //   res.status(500).json(error.message)
-    // }
-  });*/
-/*router.get("/getall",async(req,res)=>{
-    try {
-      const all =await pdf.find({});
-      res.status(200).json(
-         all
-      );
-    } catch (error) {
-      res.status(500).json(error);
-    }
-    
-  
-  });*/
  router.get("/getall", async (req, res) => {
     const { playerId } = req.query;
   
